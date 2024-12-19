@@ -46,3 +46,21 @@ for unit, (rows_a, cols_a, cols_b) in enumerate(all_test_cases, start=1):
     generate_matrices_with_dimensions(rows_a, cols_a, cols_b, folder)
 
 print("Test case matrices generated successfully!")
+
+def generate_negative_test_cases(folder):
+    os.makedirs(folder, exist_ok=True)
+
+    # Zero-dimension matrix
+    with open(f"{folder}/A.txt", 'w') as f:
+        f.write("0 5\n")
+
+    with open(f"{folder}/B.txt", 'w') as f:
+        f.write("5 0\n")
+
+    # Dimension mismatch
+    with open(f"{folder}/A.txt", 'w') as f:
+        f.write("4 3\n1 2 3\n4 5 6\n7 8 9\n10 11 12\n")
+    with open(f"{folder}/B.txt", 'w') as f:
+        f.write("2 4\n1 2 3 4\n5 6 7 8\n")
+
+    print("Negative test cases generated successfully!")
