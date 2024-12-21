@@ -24,30 +24,45 @@ for UNIT_DIR in Unit_test/unit_*; do
 
         # Test each loop order
         for LOOP_ORDER in "${LOOP_ORDERS[@]}"; do
-            echo "Testing loop order: $LOOP_ORDER"
+            AVG_CALCULATION=0.0;
+            SUCCESS_COUNT=0
 
-            # Get the start time
-            START_TIME=$(date +%s%3N)
+            # Run the unit tests 5 times and calculate the average time taken
+            for i in {1..5}; do
+                echo "Testing loop order: $LOOP_ORDER"
 
-            # Run the driver program with the current test directory and loop order
-            ./driver "$UNIT_DIR" "$LOOP_ORDER"
-            STATUS=$?
+                # Get the start time
+              DRIVER_OUTPUT=$(./driver "$UNIT_DIR" "$LOOP_ORDER")
 
-            # Get the end time
-            END_TIME=$(date +%s%3N)
+                # Extract the time taken (double) from the output using grep and awk
+                TIME_TAKEN=$(echo "$DRIVER_OUTPUT" | grep -oP '(?<=Time taken \(ms\): )[\d.]+')
 
-            # Calculate the time taken
-            TIME_TAKEN=$((END_TIME - START_TIME))
 
-            # Determine test result status
-            if [ $STATUS -eq 0 ]; then
-                TEST_STATUS="Success"
+
+
+                # Get the end time
+               
+
+                # Calculate the time taken
+                # TIME_TAKEN=$((END_TIME - START_TIME))
+
+                # Determine test result status
+                 if [[ -z "$TIME_TAKEN" || $(awk "BEGIN {print ($TIME_TAKEN < 0)}") -eq 1 ]]; then
+                    TEST_STATUS="Failure"
+                    AVG_CALCULATION=0.0
+                    break
+                else
+                    TEST_STATUS="Success"
+                    SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                    AVG_CALCULATION=$(awk "BEGIN {print ($AVG_CALCULATION + $TIME_TAKEN)}")
+                fi
+            done
+            if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
+                AVG_CALCULATION=$(awk "BEGIN {print ($AVG_CALCULATION / $SUCCESS_COUNT)}")
             else
-                TEST_STATUS="Failure"
+                AVG_CALCULATION=0.0
             fi
-
-            # Append results to the CSV file
-            echo "$UNIT_NAME,$LOOP_ORDER,$TIME_TAKEN,$TEST_STATUS" >> $OUTPUT_FILE
+            echo "$UNIT_NAME,$LOOP_ORDER,$AVG_CALCULATION,$TEST_STATUS" >> $OUTPUT_FILE
         done
     fi
 done

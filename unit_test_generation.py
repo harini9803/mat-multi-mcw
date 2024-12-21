@@ -23,7 +23,7 @@ def generate_matrices_with_dimensions(rows_a, cols_a, cols_b, folder):
         np.savetxt(f, C, fmt='%d')      
 
 
-# Generate test cases for rectangular matrices
+# Generate test cases are reangulgh matrices
 rectangular_test_cases = [
     (50, 30, 40),   
     (60, 45, 50),  
