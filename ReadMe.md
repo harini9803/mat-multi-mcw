@@ -74,15 +74,15 @@ unit_2,jik,6.42,Failure
 # DIRECTORY STRUCTURE:
 
 matrix-multi_mcw_1/
-├── driver.c               # Main driver program
-├── matmul.c               # Matrix multiplication logic
-├── unit_test/             # Folder containing test input files
-│   ├── a.text             # Test matrix A
-│   ├── b.text             # Test matrix B
-│   ├── c.text             # Additional test file
-├── run_tests.sh           # Script to run automated tests
-├── unit_test_generation   # Script to generate unit test input files
-├── README.md              # Project documentation
+├── driver.c                    # Main driver program
+├── matmul.c                    # Matrix multiplication logic
+├── unit_test/                  # Folder containing test input files
+│   ├── a.text                  # Test matrix A
+│   ├── b.text                  # Test matrix B
+│   ├── c.text                  # Additional test file
+├── run_tests.sh                # Script to run automated tests
+├── unit_test_generation.py     # Script to generate unit test input files
+├── README.md                   # Project documentation
 
 
 
