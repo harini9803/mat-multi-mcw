@@ -38,14 +38,6 @@ for UNIT_DIR in Unit_test/unit_*; do
                 TIME_TAKEN=$(echo "$DRIVER_OUTPUT" | grep -oP '(?<=Time taken \(ms\): )[\d.]+')
 
 
-
-
-                # Get the end time
-               
-
-                # Calculate the time taken
-                # TIME_TAKEN=$((END_TIME - START_TIME))
-
                 # Determine test result status
                  if [[ -z "$TIME_TAKEN" || $(awk "BEGIN {print ($TIME_TAKEN < 0)}") -eq 1 ]]; then
                     TEST_STATUS="Failure"
