@@ -19,15 +19,15 @@ for UNIT_DIR in Unit_test/unit_*; do
         UNIT_NAME=$(basename "$UNIT_DIR")
         echo "Running tests for: $UNIT_NAME"
 
-        # Loop orders to test
+        
         LOOP_ORDERS=("ijk" "ikj" "jik" "jki" "kij" "kji")
 
-        # Test each loop order
+       
         for LOOP_ORDER in "${LOOP_ORDERS[@]}"; do
             AVG_CALCULATION=0.0;
             SUCCESS_COUNT=0
 
-            # Run the unit tests 5 times and calculate the average time taken
+           
             for i in {1..5}; do
                 echo "Testing loop order: $LOOP_ORDER"
 
@@ -38,7 +38,7 @@ for UNIT_DIR in Unit_test/unit_*; do
                 TIME_TAKEN=$(echo "$DRIVER_OUTPUT" | grep -oP '(?<=Time taken \(ms\): )[\d.]+')
 
 
-                # Determine test result status
+                
                  if [[ -z "$TIME_TAKEN" || $(awk "BEGIN {print ($TIME_TAKEN < 0)}") -eq 1 ]]; then
                     TEST_STATUS="Failure"
                     AVG_CALCULATION=0.0

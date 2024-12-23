@@ -39,7 +39,7 @@ double matrix_multiply_ikj(int **A, int **B, int **C, int rows_A, int cols_A, in
             for (int j = 0; j < cols_B; j++)
             {
                 if (k == 0)
-                    C[i][j] = 0; // Initialize C[i][j] on the first k iteration
+                    C[i][j] = 0; 
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -82,7 +82,7 @@ double matrix_multiply_jki(int **A, int **B, int **C, int rows_A, int cols_A, in
             for (int i = 0; i < rows_A; i++)
             {
                 if (k == 0)
-                    C[i][j] = 0; // Initialize C[i][j] on the first k iteration
+                    C[i][j] = 0; 
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -104,7 +104,7 @@ double matrix_multiply_kij(int **A, int **B, int **C, int rows_A, int cols_A, in
             for (int j = 0; j < cols_B; j++)
             {
                 if (k == 0)
-                    C[i][j] = 0; // Initialize C[i][j] on the first k iteration
+                    C[i][j] = 0; 
                 C[i][j] += A[i][k] * B[k][j];
             }
         }
@@ -127,7 +127,7 @@ double matrix_multiply_kji(int **A, int **B, int **C, int rows_A, int cols_A, in
             for (int i = 0; i < rows_A; i++)
             {
                 if (k == 0)
-                    C[i][j] = 0; // Initialize C[i][j] on the first k iteration
+                    C[i][j] = 0; 
                 C[i][j] += A[i][k] * B[k][j];
             }
         }

@@ -24,7 +24,7 @@ int read_matrix(const char *filename, int ***matrix, int *rows, int *cols) {
     int flags=0;
      for (int i = 0; i < *rows; i++) {
         for (int j = 0; j < *cols; j++) {
-            char value[256];  // Temporary buffer to read the value as a string
+            char value[256];  
 
             if (fscanf(file, "%s", value) != 1) {
                 printf("Error: Unexpected end of file or read error at position [%d][%d].\n", i, j);
@@ -53,7 +53,7 @@ int read_matrix(const char *filename, int ***matrix, int *rows, int *cols) {
  
 }
 
-// Faction to compare matrices
+
 int compare_matrices(int **A, int **B, int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -65,7 +65,7 @@ int compare_matrices(int **A, int **B, int rows, int cols) {
     return 1;
 }
 
-// Function to free memory of a matrix
+
 void free_matrix(int **matrix, int rows) {
     for (int i = 0; i < rows; i++) {
         free(matrix[i]);
@@ -103,7 +103,7 @@ double main(int argc, char *argv[]) {
         return -1;
     }
 
-    // Check if matrix dimensions are compatible
+   
     if (rows_A<0 || cols_A<0 || rows_B<0 || cols_B<0 || cols_A != rows_B || rows_A != rows_C || cols_B != cols_C) {
         printf("Matrix dimensions are incompatible for multiplication.\n");
         free_matrix(A, rows_A);
@@ -119,7 +119,7 @@ double main(int argc, char *argv[]) {
 
     double loop_time=0;
 
-    // Call appropriate matrix multiplication function based on loop order
+    
     if (strcmp(loop_order, "ijk") == 0) {
         loop_time=matrix_multiply_ijk(A, B, Result, rows_A, cols_A, cols_B);
     } else if (strcmp(loop_order, "ikj") == 0) {
@@ -141,7 +141,7 @@ double main(int argc, char *argv[]) {
         return -1;
     }
 
-    // Compare the result with the expected output
+    
     if (compare_matrices(Result, C, rows_C, cols_C)) {
         printf("Matrix multiplication successful for loop order: %s\n", loop_order);
     } else {
